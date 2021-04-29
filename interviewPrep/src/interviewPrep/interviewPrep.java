@@ -1,8 +1,21 @@
 package interviewPrep;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+import algorithms.SortingAlgo.BubbleSort;
+import algorithms.SortingAlgo.InsertionSort;
+import algorithms.SortingAlgo.MergeSort;
+import algorithms.SortingAlgo.QuickSort;
+import algorithms.SortingAlgo.SelectionSort;
+import dynamicProgramming.BestSum;
+import dynamicProgramming.CanSum;
+import dynamicProgramming.FibonacciMem;
+import dynamicProgramming.HowSum;
+import dynamicProgramming.PermutationString;
 
 public class interviewPrep {
 
@@ -74,6 +87,119 @@ public class interviewPrep {
 		System.out.println(BirthDay.birthday(birthday, 3, 2));
 		System.out.println(BirthDay.birthday(birthday1, 4, 1));
 
+		// Bob and alice
+		System.out
+				.println((CompareTriplet.compareTriplets(Arrays.asList(5, 6, 7), Arrays.asList(3, 6, 10))).toString());
+
+		int[] rec = { 10, 5, 7, 0, -3, -8, -6 };
+		// Minus & plus
+		Fraction.plusMinus(records);
+
+		List<Integer> candles = Arrays.asList(4, 3, 4, 2, 1);
+		System.out.println(BirthDayCandles.birthdayCakeCandles(candles));
+
+		// DingleMouse
+		String str = "CAT";
+		int[][] rotos = { { 1, 13, 27 } };
+		String[] line = new String[] { "CAT" };
+		System.out.println(Arrays.toString(Dinglemouse.flapDisplay(line, rotos)));
+
+		String[] input = { "break3ing news5:", " 1A 1circle is round!", };
+		String[] input1 = { "", "Fresh fried fish - fish fresh fried" };
+		String[] input2 = { "123", "eat;sleep;repeat", "321", };
+		System.out.println(Headlines.output(input2));
+
+		// Migratory birds
+		List<Integer> birds = Arrays.asList(1, 1, 2, 2, 3);
+		System.out.println(MigratoryBirds.migratoryBirds(birds));
+
+		String[] str1 = { "London-Rotterdam:432", "Rotterdam-Calais:311", "Calais-Venice:1229" };
+		System.out.println(Fuel.calculator(str1));
+
+		// Snakes and Ladders
+		SnakesLadders game = new SnakesLadders();
+		/**
+		 * Game #1 move #1 {3, 2}: Player 1 is on square 5 Game #1 move #2 {6, 5}:
+		 * Player 2 is on square 11 Game #1 move #3 {4, 5}: Player 1 is on square 14
+		 * Game #1 move #4 {3, 6}: Player 2 is on square 20 Game #1 move #5 {2, 5}:
+		 * Player 1 is on square 42 Game #1 move #6 {4, 4}: Player 2 is on square 84
+		 * Game #1 move #7 {1, 6}: Player 2 is on square 91 Game #1 move #8 {2, 5}:
+		 * Player 1 is on square 11 Game #1 move #9 {5, 5}: Player 1 is on square 11
+		 */
+		System.out.println(game.play(3, 2));
+		System.out.println(game.play(6, 5));
+		System.out.println(game.play(4, 5));
+		System.out.println(game.play(3, 6));
+		System.out.println(game.play(2, 5));
+		System.out.println(game.play(4, 4));
+		System.out.println(game.play(1, 6));
+		System.out.println(game.play(2, 5));
+		System.out.println(game.play(5, 5));
+
+		// FibProduct
+		System.out.println(Arrays.toString(ProdFib.productFib(800)));
+
+		// JosephusSurvior
+		System.out.println(JosephusSurvivor.josephusSurvivor(100, 1));
+
+		/**
+		 * Dynamic programming module
+		 */
+		// FibMem - Memoize solution
+		Map<Long, Long> memo = new HashMap<Long, Long>();
+		System.out.println(FibonacciMem.fibMem(50L, memo));
+
+		// Grid Traveller - Memoize solution
+		Map<String, Long> memoGrid = new HashMap<>();
+		System.out.println(GridTraveller.gridTraveller(18, 18, memoGrid));
+
+		// CanSum
+		Integer[] num = { 2, 1, 4 };
+		Map<Long, Boolean> memoCanSum = new HashMap<Long, Boolean>();
+		// the above args doesnt work with gautham's solution - Guess why?:)
+		System.out.println("sum" + CanSum.canSumMem(7, num, memoCanSum));
+
+		List<Integer> myhowList = Arrays.asList(5, 3, 4, 7);
+		List<Integer> largeExecList = Arrays.asList(7, 14);
+
+		Map<Integer, List<Integer>> memoHowSum = new HashMap<Integer, List<Integer>>();
+		//Set<Entry<Integer, List<Integer>>> set = memoHowSum.entrySet();
+		/*
+		 * for (Entry<Integer, List<Integer>> entry : set) { entry. }
+		 */
+		System.out.println("Howsum" + HowSum.howSum(7, myhowList));
+		System.out.println("HowsumMem" + HowSum.howSumMem(7, myhowList, memoHowSum));
+		System.out.println("Howsum" + HowSum.howSumMem(300, largeExecList, memoHowSum));
+
+		System.out.println("BestSum" + BestSum.bestSum(7, myhowList));
+		Scanner sc = new Scanner(System.in);
+		
+		/**
+		 * Sorting Algorithms
+		 */
+		int[] sortArr = {4,7,1,8,5,2};
+		// bubble sort
+		System.out.println(Arrays.toString(BubbleSort.sort(sortArr)));
+		
+		//insertion sort
+		System.out.println(Arrays.toString(InsertionSort.insertSort(sortArr))); 
+		
+		System.out.println(Arrays.toString(SelectionSort.selectionSort(sortArr)));
+		
+		MergeSort mSort = new MergeSort();
+		mSort.mergeSort(sortArr);
+		
+		var quick = new QuickSort();
+		quick.sort(sortArr);
+		
+
+		/**
+		 * PermuteString
+		 */
+		System.out.println(PermutationString.computePer("abcd"));
+		System.out.println(PermutationString.getMiddleOfPermutation("abcd"));
 	}
+
+	// FibProduct
 
 }
